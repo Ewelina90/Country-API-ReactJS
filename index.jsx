@@ -10,7 +10,41 @@ document.addEventListener('DOMContentLoaded',function(){
 
     class App extends React.Component {
 
+        constructor(){
+            super(...arguments);
+            this.state = {
+                countriesData: [],
+            };
+        }
+
+        componentDidMount() {
+            fetch(`https://restcountries.eu/rest/v2/all`)
+                .then(r => r.json())
+                .then(data => {
+                    const countriesData = data.map((e) => {
+                        return {
+                            country: [
+                                {
+                                    name: e.name,
+                                    flag: e.flag,
+                                    latlng: e.latlng,
+                                    capital: e.capital,
+                                    population: e.population,
+                                    area: e.area,
+                                    currencies: e.currencies,
+                                    languages: e.languages,
+                                    subregion: e.subregion,
+                                }
+                            ]
+                        }
+                    });
+                    this.setState({
+                        countriesData: countriesData,
+                    });
+                });
+        }
         render() {
+            console.log(this.state.countriesData);
             return (
                 <Router history={hashHistory}>
                     <Route path='/' component={Navigation}>
