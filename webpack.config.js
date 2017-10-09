@@ -1,7 +1,12 @@
 //Konfiguracja Webpack
 module.exports = {
-    entry: "./js/index.jsx",
+    entry: "./index.jsx",
     output: { filename: "./js/app.js" },
+    devServer: {
+        inline: true,
+        contentBase: './',
+        port: 3001
+    },
     watch: true,
     module: {
         loaders: [
