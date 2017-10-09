@@ -8,3 +8,53 @@ body {
     background-color: #fff;
     color: black;
 }
+
+.container {
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    padding: 4%;
+    .header__title {
+        text-align: center;
+        font-size: 4rem;
+        color: #1a3795;
+        line-height: 1.2em;
+    }
+    .header__subtitle {
+        text-align: center;
+        color: #1a3795;
+        font-size: 1.8rem;
+        line-height: 1.8em;
+    }
+}
+
+.navigation {
+    width: 100%;
+    height: 40px;
+    background-color: #4a90e2;
+    .navigation__menu {
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+        text-align: center;
+        .navigation__menu__item {
+            display: inline-block;
+            font-size: 1.3rem;
+            height: 100%;
+            padding: 8px 20px;
+            .navigation__menu__link {
+                padding: 6px 10px;
+                color: #fff;
+                text-decoration: none;
+                &:hover {
+                    background-color: #3680e7;    
+                }
+            }
+        }
+        .navigation__menu__item--active {
+            background-color: #3680e7;
+        }
+    }
+}

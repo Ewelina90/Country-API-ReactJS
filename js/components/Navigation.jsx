@@ -4,14 +4,17 @@ import {IndexLink} from 'react-router';
 export class Navigation extends React.Component {
 
     render() {
-        const activeStyle = {color: '#4a90e2'};
+
         return (
             <div className="conteiner">
-                <h1>Find out information about countries</h1>
-                <nav>
-                    <ul>
-                        <li><IndexLink to="/" activeStyle={activeStyle}>Countries Info</IndexLink></li>
-                        <li><IndexLink to="/statistics" activeStyle={activeStyle}>Statistics</IndexLink></li>
+                <header className="header">
+                    <h1 className="header__title">Powered by COUNTRIES API</h1>
+                    <h3 className="header__subtitle">Find out information about countries</h3>
+                </header>
+                <nav className="navigation">
+                    <ul className="navigation__menu">
+                        <li className="navigation__menu__item"><IndexLink to="/" className="navigation__menu__link" activeClassName="navigation__menu__item--active">Countries Info</IndexLink></li>
+                        <li className="navigation__menu__item"><IndexLink to="/statistics" className="navigation__menu__link" activeClassName="navigation__menu__item--active">Statistics</IndexLink></li>
                     </ul>
                 </nav>
                 {this.props.children}
