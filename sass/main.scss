@@ -49,7 +49,7 @@ body {
                 color: #fff;
                 text-decoration: none;
                 &:hover {
-                    background-color: #3680e7;    
+                    background-color: #3680e7;
                 }
             }
         }
@@ -57,4 +57,57 @@ body {
             background-color: #3680e7;
         }
     }
+}
+
+.content {
+    width: 100%;
+    text-align: center;
+}
+
+.searchbar {
+    width: 100%;
+    background-color: #ebebeb;
+    margin: 0 auto;
+    .searchbar__input {
+        margin: 20px auto;
+        width: 350px;
+        height: 35px;
+        font-size: 1.2rem;
+        background-color: lighten(#f5f5f5,10%);
+        padding: 0.2em 0.5em;
+        border: 1px solid darken(#f5f5f5, 10%);
+        color: #1a3795;
+        &:focus {
+            outline: none;
+            border: 1px solid #ffbc00;
+        }
+    }
+}
+
+.countryinfo {
+    width: 100%;
+    text-align: center;
+    .countryinfo__container {
+        width: 80%;
+        margin: 30px auto;
+        border: 2px solid black;
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+    }
+}
+
+.countryinfo__container__col1 {
+    width: 30%;
+    float: left;
+    margin-left: 5%;
+    padding: 5px;
+}
+
+.countryinfo__container__col2 {
+    width: 65%;
+    float: left;
+    padding: 5px;
 }
