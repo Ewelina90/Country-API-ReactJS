@@ -12214,8 +12214,16 @@ var Countries = exports.Countries = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Countries.__proto__ || Object.getPrototypeOf(Countries)).apply(this, arguments));
 
+        _this.handleChosenCountry = function (country) {
+            console.log(country);
+            _this.setState({
+                chosenCountry: country
+            });
+        };
+
         _this.state = {
-            countriesData: ''
+            countriesData: '',
+            chosenCountry: ''
         };
         return _this;
     }
@@ -12254,7 +12262,9 @@ var Countries = exports.Countries = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'content' },
-                this.state.countriesData ? _react2.default.createElement(_SearchBar.SearchBar, { countriesData: this.state.countriesData }) : _react2.default.createElement(
+                this.state.countriesData ? _react2.default.createElement(_SearchBar.SearchBar, {
+                    countriesData: this.state.countriesData,
+                    handleChosenCountry: this.handleChosenCountry }) : _react2.default.createElement(
                     'p',
                     null,
                     'Loading ...'
@@ -12692,7 +12702,6 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
         };
 
         _this.filterCountriesData = function (searchWord) {
-            console.log('yes');
             var countries = _this.props.countriesData.slice();
             var countriesProposition = countries.filter(function (e) {
                 return e.country[0].name.toLowerCase().includes(searchWord.toLowerCase());
@@ -12702,6 +12711,17 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
 
             _this.setState({
                 countryPropositions: countriesProposition
+            });
+        };
+
+        _this.handleOnChose = function (event, el) {
+            event.preventDefault();
+            if (typeof _this.props.handleChosenCountry == 'function') {
+                _this.props.handleChosenCountry(el);
+            }
+            _this.setState({
+                countryPropositions: '',
+                searchWord: ''
             });
         };
 
@@ -12715,11 +12735,15 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
     _createClass(SearchBar, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            console.log(this.state.countryPropositions);
             var propositions = this.state.countryPropositions ? this.state.countryPropositions.map(function (el) {
-                console.log(el);
                 return _react2.default.createElement(
                     'li',
-                    { key: el },
+                    { key: el, onClick: function onClick(e) {
+                            return _this2.handleOnChose(e, el);
+                        } },
                     el
                 );
             }) : null;
@@ -12735,7 +12759,7 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
                     placeholder: 'Type Country name in english' }),
                 _react2.default.createElement(
                     'ul',
-                    { style: { display: this.state.countryPropositions ? 'block' : 'none' } },
+                    { style: { display: this.state.searchWord.length >= 3 ? 'block' : 'none' } },
                     propositions
                 )
             );

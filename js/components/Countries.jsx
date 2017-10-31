@@ -8,6 +8,7 @@ export class Countries extends React.Component {
         super(...arguments);
         this.state = {
             countriesData: '',
+            chosenCountry: '',
         };
     }
 
@@ -38,11 +39,21 @@ export class Countries extends React.Component {
             })
         }
 
+    handleChosenCountry = (country) => {
+        console.log(country);
+        this.setState({
+            chosenCountry: country,
+        })
+    }
+
     render() {
         return (
             <div className="content">
                 {this.state.countriesData ?
-                    <SearchBar countriesData={this.state.countriesData}></SearchBar>
+                    <SearchBar
+                        countriesData={this.state.countriesData}
+                        handleChosenCountry={this.handleChosenCountry}>
+                    </SearchBar>
                 :   <p>Loading ...</p> }
                 <CountryInfo></CountryInfo>
             </div>
