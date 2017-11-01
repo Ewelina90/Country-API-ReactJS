@@ -12709,15 +12709,51 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
                 return e.country[0].name;
             });
 
+            _this.createPropositionList(countriesProposition, searchWord);
+        };
+
+        _this.createPropositionList = function (countries, searchWord) {
+            var propositions = countries.length >= 1 ? countries.map(function (country, id) {
+                var word = searchWord.toLowerCase();
+                var startIndex = country.toLowerCase().indexOf(word);
+                var endIndex = word.length + startIndex;
+                var begining = country.slice(0, startIndex);
+                var middle = country.slice(startIndex, endIndex);
+                var end = country.slice(word.length + startIndex);
+                return _react2.default.createElement(
+                    'li',
+                    { key: country + id,
+                        onClick: function onClick(e) {
+                            return _this.handleOnChose(e, country);
+                        }
+                    },
+                    begining,
+                    _react2.default.createElement(
+                        'span',
+                        { style: { fontWeight: 'bold', fontFamily: 'inherit' } },
+                        middle
+                    ),
+                    end
+                );
+            }) : _react2.default.createElement(
+                'li',
+                null,
+                'This country doesn\'t exist.'
+            );
+
             _this.setState({
-                countryPropositions: countriesProposition
+                countryPropositions: countries,
+                propositionsList: propositions
             });
         };
 
         _this.handleOnChose = function (event, el) {
             event.preventDefault();
-            if (typeof _this.props.handleChosenCountry == 'function') {
-                _this.props.handleChosenCountry(el);
+            var handleChosenCountry = _this.props.handleChosenCountry;
+
+
+            if (typeof handleChosenCountry == 'function') {
+                handleChosenCountry(el);
             }
             _this.setState({
                 countryPropositions: '',
@@ -12727,7 +12763,8 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
 
         _this.state = {
             searchWord: '',
-            countryPropositions: ''
+            countryPropositions: '',
+            propositionsList: ''
         };
         return _this;
     }
@@ -12735,18 +12772,9 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
     _createClass(SearchBar, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            console.log(this.state.countryPropositions);
-            var propositions = this.state.countryPropositions ? this.state.countryPropositions.map(function (el) {
-                return _react2.default.createElement(
-                    'li',
-                    { key: el, onClick: function onClick(e) {
-                            return _this2.handleOnChose(e, el);
-                        } },
-                    el
-                );
-            }) : null;
+            var _state = this.state,
+                searchWord = _state.searchWord,
+                propositionsList = _state.propositionsList;
 
             return _react2.default.createElement(
                 'section',
@@ -12754,13 +12782,13 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
                 _react2.default.createElement('input', {
                     type: 'text',
                     className: 'searchbar__input',
-                    value: this.state.searchWord,
+                    value: searchWord,
                     onChange: this.handlSearchOnChange,
                     placeholder: 'Type Country name in english' }),
                 _react2.default.createElement(
                     'ul',
-                    { style: { display: this.state.searchWord.length >= 3 ? 'block' : 'none' } },
-                    propositions
+                    { style: { display: searchWord.length >= 3 ? 'block' : 'none' } },
+                    propositionsList
                 )
             );
         }
