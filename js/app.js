@@ -12215,15 +12215,34 @@ var Countries = exports.Countries = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Countries.__proto__ || Object.getPrototypeOf(Countries)).apply(this, arguments));
 
         _this.handleChosenCountry = function (country) {
-            console.log(country);
             _this.setState({
                 chosenCountry: country
+            });
+
+            _this.getCountryData(country);
+        };
+
+        _this.getCountryData = function (chosenCountry) {
+            var countriesData = _this.state.countriesData;
+
+            var countryDataToDisplay = [];
+            if (countriesData) {
+                countryDataToDisplay = countriesData.filter(function (e) {
+                    return e.country[0].name.includes(chosenCountry);
+                }).map(function (e) {
+                    return e.country[0];
+                });
+            }
+
+            _this.setState({
+                countryDataToDisplay: countryDataToDisplay
             });
         };
 
         _this.state = {
             countriesData: '',
-            chosenCountry: ''
+            chosenCountry: '',
+            countryDataToDisplay: ''
         };
         return _this;
     }
@@ -12259,17 +12278,23 @@ var Countries = exports.Countries = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _state = this.state,
+                countriesData = _state.countriesData,
+                chosenCountry = _state.chosenCountry,
+                countryDataToDisplay = _state.countryDataToDisplay;
+
             return _react2.default.createElement(
                 'div',
                 { className: 'content' },
-                this.state.countriesData ? _react2.default.createElement(_SearchBar.SearchBar, {
-                    countriesData: this.state.countriesData,
+                countriesData ? _react2.default.createElement(_SearchBar.SearchBar, {
+                    countriesData: countriesData,
                     handleChosenCountry: this.handleChosenCountry }) : _react2.default.createElement(
                     'p',
                     null,
                     'Loading ...'
                 ),
-                _react2.default.createElement(_CountryInfo.CountryInfo, null)
+                chosenCountry && countryDataToDisplay ? _react2.default.createElement(_CountryInfo.CountryInfo, {
+                    countryInfo: countryDataToDisplay }) : null
             );
         }
     }]);
@@ -12587,6 +12612,9 @@ var CountryInfo = exports.CountryInfo = function (_React$Component) {
     _createClass(CountryInfo, [{
         key: "render",
         value: function render() {
+            var countryInfo = this.props.countryInfo;
+
+            console.log(countryInfo);
             return _react2.default.createElement(
                 "section",
                 { className: "countryinfo" },
@@ -12600,6 +12628,11 @@ var CountryInfo = exports.CountryInfo = function (_React$Component) {
                             "h2",
                             null,
                             "name"
+                        ),
+                        _react2.default.createElement(
+                            "p",
+                            null,
+                            countryInfo[0].name
                         ),
                         _react2.default.createElement("img", null),
                         _react2.default.createElement(
@@ -12620,14 +12653,29 @@ var CountryInfo = exports.CountryInfo = function (_React$Component) {
                                 "capital"
                             ),
                             _react2.default.createElement(
+                                "p",
+                                null,
+                                countryInfo[0].capital
+                            ),
+                            _react2.default.createElement(
                                 "h2",
                                 null,
                                 "subregion"
                             ),
                             _react2.default.createElement(
+                                "p",
+                                null,
+                                countryInfo[0].subregion
+                            ),
+                            _react2.default.createElement(
                                 "h2",
                                 null,
                                 "population"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                countryInfo[0].population
                             )
                         ),
                         _react2.default.createElement(
@@ -12639,14 +12687,30 @@ var CountryInfo = exports.CountryInfo = function (_React$Component) {
                                 "area"
                             ),
                             _react2.default.createElement(
+                                "p",
+                                null,
+                                countryInfo[0].area
+                            ),
+                            _react2.default.createElement(
                                 "h2",
                                 null,
-                                "'currencies.name currencies.symbol'"
+                                "'currencies, symbol'"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                countryInfo[0].currencies[0].name,
+                                countryInfo[0].currencies[0].symbol
                             ),
                             _react2.default.createElement(
                                 "h2",
                                 null,
                                 "'languages.name'"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                countryInfo[0].languages[0].name
                             )
                         )
                     )

@@ -9,6 +9,7 @@ export class Countries extends React.Component {
         this.state = {
             countriesData: '',
             chosenCountry: '',
+            countryDataToDisplay: '',
         };
     }
 
@@ -40,22 +41,44 @@ export class Countries extends React.Component {
         }
 
     handleChosenCountry = (country) => {
-        console.log(country);
         this.setState({
             chosenCountry: country,
+        })
+
+        this.getCountryData(country);
+    }
+
+    getCountryData = (chosenCountry) => {
+        const { countriesData } = this.state;
+        let countryDataToDisplay = [];
+        if( countriesData ){
+            countryDataToDisplay = countriesData.filter((e) => {
+                return e.country[0].name.includes(chosenCountry);
+            }).map((e) => {
+                return e.country[0];
+            });
+        }
+
+        this.setState({
+            countryDataToDisplay: countryDataToDisplay,
         })
     }
 
     render() {
+        const { countriesData, chosenCountry, countryDataToDisplay } = this.state;
         return (
             <div className="content">
-                {this.state.countriesData ?
+                { countriesData ?
                     <SearchBar
-                        countriesData={this.state.countriesData}
-                        handleChosenCountry={this.handleChosenCountry}>
+                        countriesData={ countriesData }
+                        handleChosenCountry={ this.handleChosenCountry }>
                     </SearchBar>
-                :   <p>Loading ...</p> }
-                <CountryInfo></CountryInfo>
+                    :   <p>Loading ...</p> }
+                { chosenCountry && countryDataToDisplay ?
+                    <CountryInfo
+                        countryInfo={ countryDataToDisplay }>
+                    </CountryInfo>
+                    : null }
             </div>
         )
     }
