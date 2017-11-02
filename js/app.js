@@ -12604,111 +12604,140 @@ var CountryInfo = exports.CountryInfo = function (_React$Component) {
     _inherits(CountryInfo, _React$Component);
 
     function CountryInfo() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
         _classCallCheck(this, CountryInfo);
 
-        return _possibleConstructorReturn(this, (CountryInfo.__proto__ || Object.getPrototypeOf(CountryInfo)).apply(this, arguments));
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CountryInfo.__proto__ || Object.getPrototypeOf(CountryInfo)).call.apply(_ref, [this].concat(args))), _this), _this.formatNumber = function (num) {
+            var number = num;
+            var counter = 1;
+            var result = [];
+            var numberArray = number.toString().split('');
+            for (var i = numberArray.length - 1; i >= 0; i--) {
+                result.push(numberArray[i]);
+                if (counter % 3 === 0 && i !== 0) {
+                    result.push('.');
+                }
+                counter++;
+            }
+            result.reverse().join();
+            return result;
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(CountryInfo, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             var countryInfo = this.props.countryInfo;
 
-            console.log(countryInfo);
+            var area = this.formatNumber(countryInfo[0].area);
+            var population = this.formatNumber(countryInfo[0].population);
+
+            // Show when data is fetching
+            if (!countryInfo) {
+                return null;
+            }
+
             return _react2.default.createElement(
-                "section",
-                { className: "countryinfo" },
+                'section',
+                { className: 'countryinfo' },
                 _react2.default.createElement(
-                    "div",
-                    { className: "countryinfo__container" },
+                    'div',
+                    { className: 'countryinfo__container' },
                     _react2.default.createElement(
-                        "div",
-                        { className: "countryinfo__container__col1" },
+                        'div',
+                        { className: 'countryinfo__container__col1' },
                         _react2.default.createElement(
-                            "h2",
+                            'h2',
                             null,
-                            "name"
+                            'name'
                         ),
                         _react2.default.createElement(
-                            "p",
+                            'p',
                             null,
                             countryInfo[0].name
                         ),
-                        _react2.default.createElement("img", null),
+                        _react2.default.createElement('img', { src: countryInfo[0].flag }),
                         _react2.default.createElement(
-                            "div",
+                            'div',
                             null,
-                            "Mapa"
+                            'Mapa'
                         )
                     ),
                     _react2.default.createElement(
-                        "div",
-                        { className: "countryinfo__container__col2" },
+                        'div',
+                        { className: 'countryinfo__container__col2' },
                         _react2.default.createElement(
-                            "div",
-                            { className: "countryinfo__container__col2__col" },
+                            'div',
+                            { className: 'countryinfo__container__col2__col1' },
                             _react2.default.createElement(
-                                "h2",
+                                'h2',
                                 null,
-                                "capital"
+                                'capital'
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
                                 countryInfo[0].capital
                             ),
                             _react2.default.createElement(
-                                "h2",
+                                'h2',
                                 null,
-                                "subregion"
+                                'subregion'
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
                                 countryInfo[0].subregion
                             ),
                             _react2.default.createElement(
-                                "h2",
+                                'h2',
                                 null,
-                                "population"
+                                'population'
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                countryInfo[0].population
+                                population
                             )
                         ),
                         _react2.default.createElement(
-                            "div",
-                            { className: "countryinfo__container__col2__col" },
+                            'div',
+                            { className: 'countryinfo__container__col2__col2' },
                             _react2.default.createElement(
-                                "h2",
+                                'h2',
                                 null,
-                                "area"
+                                'area km^2'
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                countryInfo[0].area
+                                area
                             ),
                             _react2.default.createElement(
-                                "h2",
+                                'h2',
                                 null,
-                                "'currencies, symbol'"
+                                '\'currencies, symbol\''
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
                                 countryInfo[0].currencies[0].name,
                                 countryInfo[0].currencies[0].symbol
                             ),
                             _react2.default.createElement(
-                                "h2",
+                                'h2',
                                 null,
-                                "'languages.name'"
+                                '\'languages.name\''
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
                                 countryInfo[0].languages[0].name
                             )

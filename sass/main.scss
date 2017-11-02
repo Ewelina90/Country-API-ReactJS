@@ -113,4 +113,25 @@ body {
     width: 65%;
     float: left;
     padding: 5px;
+    &:before {
+        content: '';
+        clear: both;
+        display: block;
+    }
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+    .countryinfo__container__col2__col1 {
+        width: 45%;
+        float: left;
+        padding: 5px;
+    }
+    .countryinfo__container__col2__col2 {
+        width: 45%;
+        float: left;
+        padding: 5px;
+    }
+
 }
