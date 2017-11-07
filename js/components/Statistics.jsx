@@ -32,13 +32,40 @@ export class Statistics extends React.Component {
             })
         }
 
+    getPopulationData = () => {
+        const data = this.state.countriesData;
+        let subregions = [];
+        for(let i = 0; i < data.length; i++){
+            let currentData = data[i].country[0].subregion;
+            if((subregions.indexOf(currentData) == -1) && currentData !== ''){
+                subregions.push(currentData);
+            }
+        }
 
+        let populationSum = [];
+        for(let i = 0; i < subregions.length; i++){
+            populationSum[i] = data.filter((e) => {
+                return subregions[i] === e.country[0].subregion;
+            }).map((e) => {
+                return e.country[0].population;
+            }).reduce((prev, curr) => {
+                return prev + curr;
+            })
+        }
+
+        let populationData = [];
+        for(let i = 0; i < subregions.length; i++){
+            populationData.push({name: subregions[i], value: populationSum[i]});
+        }
+
+        return populationData;
+    }
 
     render() {
-        console.log(this.state.countriesData);
+        const populationData = this.state.countriesData ?  this.getPopulationData() : null;
         return (
             <div className="content">
-                <SimplePieChart data={this.state.populationData}></SimplePieChart>
+                <SimplePieChart data={populationData}></SimplePieChart>
             </div>
 
         )
