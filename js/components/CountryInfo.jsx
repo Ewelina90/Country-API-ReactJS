@@ -22,7 +22,7 @@ export class CountryInfo extends React.Component {
         const { countryInfo } = this.props;
         const area = this.formatNumber(countryInfo[0].area);
         const population = this.formatNumber(countryInfo[0].population);
-
+        
         // Show when data is fetching
         if( !countryInfo ){
             return null;
@@ -50,7 +50,7 @@ export class CountryInfo extends React.Component {
                             <h2>area km^2</h2>
                                 <p>{ area }</p>
                             <h2>'currencies, symbol'</h2>
-                                <p>{ countryInfo[0].currencies[0].name}
+                                <p>{ countryInfo[0].currencies[0].name }
                                    { countryInfo[0].currencies[0].symbol }
                                </p>
                             <h2>'languages.name'</h2>

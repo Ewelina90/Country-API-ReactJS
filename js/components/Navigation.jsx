@@ -13,8 +13,22 @@ export class Navigation extends React.Component {
                 </header>
                 <nav className="navigation">
                     <ul className="navigation__menu">
-                        <li className="navigation__menu__item"><IndexLink to="/" className="navigation__menu__link" activeClassName="navigation__menu__item--active">Countries Info</IndexLink></li>
-                        <li className="navigation__menu__item"><IndexLink to="/statistics" className="navigation__menu__link" activeClassName="navigation__menu__item--active">Statistics</IndexLink></li>
+                        <li className="navigation__menu__item">
+                            <IndexLink
+                                to="/"
+                                className="navigation__menu__link"
+                                activeClassName="navigation__menu__item--active">
+                                Countries Info
+                            </IndexLink>
+                        </li>
+                        <li className="navigation__menu__item">
+                            <IndexLink
+                                to="/statistics"
+                                className="navigation__menu__link"
+                                activeClassName="navigation__menu__item--active">
+                                Statistics
+                            </IndexLink>
+                        </li>
                     </ul>
                 </nav>
                 {this.props.children}

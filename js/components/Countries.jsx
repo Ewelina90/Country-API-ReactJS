@@ -73,12 +73,14 @@ export class Countries extends React.Component {
                         countriesData={ countriesData }
                         handleChosenCountry={ this.handleChosenCountry }>
                     </SearchBar>
-                    :   <p>Loading ...</p> }
+                    : <p>Loading ...</p>
+                }
                 { chosenCountry && countryDataToDisplay ?
                     <CountryInfo
                         countryInfo={ countryDataToDisplay }>
                     </CountryInfo>
-                    : null }
+                    : null
+                }
             </div>
         )
     }
