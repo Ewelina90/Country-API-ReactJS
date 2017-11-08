@@ -32,39 +32,36 @@ export class Statistics extends React.Component {
             })
         }
 
-    getPopulationData = () => {
+    getChartData = (group, number) => {
         const data = this.state.countriesData;
-        let subregions = [];
+        let groups = [];
         for(let i = 0; i < data.length; i++){
-            let currentData = data[i].country[0].subregion;
-            if((subregions.indexOf(currentData) == -1) && currentData !== ''){
-                subregions.push(currentData);
+            let currentData = data[i].country[0][group];
+            if((groups.indexOf(currentData) == -1) && currentData !== ''){
+                groups.push(currentData);
             }
         }
-
-        let populationSum = [];
-        for(let i = 0; i < subregions.length; i++){
-            populationSum[i] = data.filter((e) => {
-                return subregions[i] === e.country[0].subregion;
+        let numbers = [];
+        for(let i = 0; i < groups.length; i++){
+            numbers[i] = data.filter((e) => {
+                return groups[i] === e.country[0][group];
             }).map((e) => {
-                return e.country[0].population;
+                return e.country[0][number];
             }).reduce((prev, curr) => {
                 return prev + curr;
             })
         }
-
-        let populationData = [];
-        for(let i = 0; i < subregions.length; i++){
-            populationData.push({name: subregions[i], value: populationSum[i]});
+        let chartData = [];
+        for(let i = 0; i < groups.length; i++){
+            chartData.push({name: groups[i], value: numbers[i]});
         }
-
-        return populationData;
+        return chartData;
     }
 
     render() {
-        const populationData = this.state.countriesData ?  this.getPopulationData() : null;
+        const populationData = this.state.countriesData ?  this.getChartData('subregion', 'population') : null;
         return (
-            <div className="content">
+            <div className="content" style={{margin: '0 auto'}}>
                 <SimplePieChart data={populationData}></SimplePieChart>
             </div>
 

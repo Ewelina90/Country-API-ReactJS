@@ -69,8 +69,8 @@ export class SimplePieChart extends React.Component {
                     data={this.props.data}
                     cx={300}
                     cy={200}
-                    innerRadius={60}
-                    outerRadius={80}
+                    innerRadius={120}
+                    outerRadius={170}
                     fill="#8884d8"
                     onMouseEnter={this.onPieEnter}
                 />

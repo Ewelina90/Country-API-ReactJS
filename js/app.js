@@ -33592,38 +33592,35 @@ var Statistics = exports.Statistics = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Statistics.__proto__ || Object.getPrototypeOf(Statistics)).apply(this, arguments));
 
-        _this.getPopulationData = function () {
+        _this.getChartData = function (group, number) {
             var data = _this.state.countriesData;
-            var subregions = [];
+            var groups = [];
             for (var i = 0; i < data.length; i++) {
-                var currentData = data[i].country[0].subregion;
-                if (subregions.indexOf(currentData) == -1 && currentData !== '') {
-                    subregions.push(currentData);
+                var currentData = data[i].country[0][group];
+                if (groups.indexOf(currentData) == -1 && currentData !== '') {
+                    groups.push(currentData);
                 }
             }
-
-            var populationSum = [];
+            var numbers = [];
 
             var _loop = function _loop(_i) {
-                populationSum[_i] = data.filter(function (e) {
-                    return subregions[_i] === e.country[0].subregion;
+                numbers[_i] = data.filter(function (e) {
+                    return groups[_i] === e.country[0][group];
                 }).map(function (e) {
-                    return e.country[0].population;
+                    return e.country[0][number];
                 }).reduce(function (prev, curr) {
                     return prev + curr;
                 });
             };
 
-            for (var _i = 0; _i < subregions.length; _i++) {
+            for (var _i = 0; _i < groups.length; _i++) {
                 _loop(_i);
             }
-
-            var populationData = [];
-            for (var _i2 = 0; _i2 < subregions.length; _i2++) {
-                populationData.push({ name: subregions[_i2], value: populationSum[_i2] });
+            var chartData = [];
+            for (var _i2 = 0; _i2 < groups.length; _i2++) {
+                chartData.push({ name: groups[_i2], value: numbers[_i2] });
             }
-
-            return populationData;
+            return chartData;
         };
 
         _this.state = {
@@ -33658,10 +33655,10 @@ var Statistics = exports.Statistics = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var populationData = this.state.countriesData ? this.getPopulationData() : null;
+            var populationData = this.state.countriesData ? this.getChartData('subregion', 'population') : null;
             return _react2.default.createElement(
                 'div',
-                { className: 'content' },
+                { className: 'content', style: { margin: '0 auto' } },
                 _react2.default.createElement(_PieChart.SimplePieChart, { data: populationData })
             );
         }
@@ -34040,8 +34037,8 @@ var SimplePieChart = exports.SimplePieChart = function (_React$Component) {
           data: this.props.data,
           cx: 300,
           cy: 200,
-          innerRadius: 60,
-          outerRadius: 80,
+          innerRadius: 120,
+          outerRadius: 170,
           fill: '#8884d8',
           onMouseEnter: this.onPieEnter
         })
