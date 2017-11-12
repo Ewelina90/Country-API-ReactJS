@@ -1,13 +1,18 @@
+@import './variables.scss';
 * {
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    background-color: #fff;
+    background-color: rgba(148, 177, 217, 0.21);
     color: black;
 }
+
 .active {
     background-color: green;
 }
@@ -19,45 +24,59 @@ body {
 .header {
     width: 100%;
     padding: 4%;
+    font-weight: 400;
+    background-color: #2457b3;
+    background-image: url("./../img/mountains.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     .header__title {
         text-align: center;
-        font-size: 4rem;
-        color: #1a3795;
-        line-height: 1.2em;
+        font-size: 3.5rem;
+        color: rgba(255,255,255,0.9);
+        line-height: 2em;
     }
     .header__subtitle {
         text-align: center;
-        color: #1a3795;
-        font-size: 1.8rem;
-        line-height: 1.8em;
+        color: rgba(255,255,255,0.8);
+        font-size: 1.75rem;
+        line-height: 2em;
     }
 }
 
 .navigation {
     width: 100%;
-    height: 40px;
-    background-color: #4a90e2;
+    height: 50px;
+    margin-top: 50px;
     .navigation__menu {
-        width: 80%;
+        width: 46%;
+        min-width: 350px;
         height: 100%;
         margin: 0 auto;
         text-align: center;
+        border-bottom: 1px solid #5f8fce;
         .navigation__menu__item {
             display: inline-block;
-            font-size: 1.3rem;
             height: 100%;
-            padding: 8px 20px;
             .navigation__menu__link {
-                padding: 6px 10px;
-                color: #fff;
+                padding: 15px 24px;
+                color: rgba(255,255,255,1);
                 text-decoration: none;
+                font-weight: 400;
+                text-transform: uppercase;
+                line-height: 45px;
+                font-size: 1rem;
+                font-family: "Roboto",sans-serif;
                 &:hover {
-                    background-color: #3680e7;
+                    cursor: pointer;
+                }
+                &:focus {
+                    color: rgba(255,255,255,1);
                 }
             }
         }
         .navigation__menu__item--active {
-            background-color: #3680e7;
+            border-bottom: 2px solid rgba(255,255,255,0.9);
         }
     }
 }
@@ -69,8 +88,10 @@ body {
 
 .searchbar {
     width: 100%;
-    background-color: #ebebeb;
+    background-color: #fafafa;
+    box-shadow: 1px 1px 4px 0px rgba(158, 158, 158, 0.5);
     margin: 0 auto;
+    position: relative;
     .searchbar__input {
         margin: 20px auto;
         width: 350px;
@@ -83,6 +104,22 @@ body {
         &:focus {
             outline: none;
             border: 1px solid #ffbc00;
+        }
+    }
+    .searchbar__list {
+        width: $propositionListWidth;
+        margin: -16px auto;
+        position: absolute;
+        left: 30%;
+        background: #fafafa;
+        z-index: 1;
+        box-shadow: 0 0 4px 0 rgba(158, 158, 158, 0.5);
+        .searchbar__list__item {
+            font-size: 1rem;
+            line-height: 2.2em;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
     }
 }

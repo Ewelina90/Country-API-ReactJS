@@ -61,7 +61,7 @@ export class Statistics extends React.Component {
     render() {
         const populationData = this.state.countriesData ?  this.getChartData('subregion', 'population') : null;
         return (
-            <div className="content" style={{margin: '0 auto'}}>
+            <div className="content">
                 <SimplePieChart data={populationData}></SimplePieChart>
             </div>
 

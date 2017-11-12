@@ -42,6 +42,7 @@ export class SearchBar extends React.Component {
                 let end = country.slice(word.length + startIndex)
                 return <li key={ country + id }
                            onClick={ e => this.handleOnChose(e,country) }
+                           className="searchbar__list__item"
                            >
                            { begining }
                            <span style={{fontWeight: 'bold', fontFamily: 'inherit' }}>{ middle }</span>
@@ -80,7 +81,8 @@ export class SearchBar extends React.Component {
                     onChange={ this.handlSearchOnChange }
                     placeholder='Type Country name in english'>
                 </input>
-                <ul style={{display: searchWord.length >= 3 ? 'block' : 'none'}}>
+                <ul style={{display: searchWord.length >= 3 ? 'block' : 'none'}}
+                    className="searchbar__list">
                     { propositionsList }
                 </ul>
             </section>

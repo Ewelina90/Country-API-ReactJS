@@ -33462,39 +33462,39 @@ var Navigation = exports.Navigation = function (_React$Component) {
                         'Powered by COUNTRIES API'
                     ),
                     _react2.default.createElement(
-                        'h3',
+                        'h2',
                         { className: 'header__subtitle' },
                         'Find out information about countries'
-                    )
-                ),
-                _react2.default.createElement(
-                    'nav',
-                    { className: 'navigation' },
+                    ),
                     _react2.default.createElement(
-                        'ul',
-                        { className: 'navigation__menu' },
+                        'nav',
+                        { className: 'navigation' },
                         _react2.default.createElement(
-                            'li',
-                            { className: 'navigation__menu__item' },
+                            'ul',
+                            { className: 'navigation__menu' },
                             _react2.default.createElement(
-                                _reactRouter.IndexLink,
-                                {
-                                    to: '/',
-                                    className: 'navigation__menu__link',
-                                    activeClassName: 'navigation__menu__item--active' },
-                                'Countries Info'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'li',
-                            { className: 'navigation__menu__item' },
+                                'li',
+                                { className: 'navigation__menu__item' },
+                                _react2.default.createElement(
+                                    _reactRouter.IndexLink,
+                                    {
+                                        to: '/',
+                                        className: 'navigation__menu__link',
+                                        activeClassName: 'navigation__menu__item--active' },
+                                    'Countries Info'
+                                )
+                            ),
                             _react2.default.createElement(
-                                _reactRouter.IndexLink,
-                                {
-                                    to: '/statistics',
-                                    className: 'navigation__menu__link',
-                                    activeClassName: 'navigation__menu__item--active' },
-                                'Statistics'
+                                'li',
+                                { className: 'navigation__menu__item' },
+                                _react2.default.createElement(
+                                    _reactRouter.IndexLink,
+                                    {
+                                        to: '/statistics',
+                                        className: 'navigation__menu__link',
+                                        activeClassName: 'navigation__menu__item--active' },
+                                    'Statistics'
+                                )
                             )
                         )
                     )
@@ -33658,7 +33658,7 @@ var Statistics = exports.Statistics = function (_React$Component) {
             var populationData = this.state.countriesData ? this.getChartData('subregion', 'population') : null;
             return _react2.default.createElement(
                 'div',
-                { className: 'content', style: { margin: '0 auto' } },
+                { className: 'content' },
                 _react2.default.createElement(_PieChart.SimplePieChart, { data: populationData })
             );
         }
@@ -34116,7 +34116,8 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
                     { key: country + id,
                         onClick: function onClick(e) {
                             return _this.handleOnChose(e, country);
-                        }
+                        },
+                        className: 'searchbar__list__item'
                     },
                     begining,
                     _react2.default.createElement(
@@ -34178,7 +34179,8 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
                     placeholder: 'Type Country name in english' }),
                 _react2.default.createElement(
                     'ul',
-                    { style: { display: searchWord.length >= 3 ? 'block' : 'none' } },
+                    { style: { display: searchWord.length >= 3 ? 'block' : 'none' },
+                        className: 'searchbar__list' },
                     propositionsList
                 )
             );
