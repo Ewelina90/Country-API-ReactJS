@@ -1,1 +1,25 @@
 $propositionListWidth: 350px;
+%mixinRow {
+    display: block;
+    width: 100%;
+    padding: 5%;
+    height: auto;
+    h2 {
+        margin: 8px;
+        color: rgba(0,0,0,.54);
+        text-align: left;
+        font-weight: 400;
+        font-size: 0.8rem;
+        line-height: 2em;
+    }
+    p {
+        color: rgba(0,0,0,.87);
+        text-align: left;
+        font-weight: 500;
+        font-size: 1rem;
+        margin-left: 8px;
+    }
+    img {
+        margin: 10px 0;
+    }
+}

@@ -22,7 +22,7 @@ export class CountryInfo extends React.Component {
         const { countryInfo } = this.props;
         const area = this.formatNumber(countryInfo[0].area);
         const population = this.formatNumber(countryInfo[0].population);
-        
+
         // Show when data is fetching
         if( !countryInfo ){
             return null;
@@ -32,30 +32,42 @@ export class CountryInfo extends React.Component {
             <section className="countryinfo">
                 <div className="countryinfo__container">
                     <div className="countryinfo__container__col1">
-                        <h2>name</h2>
-                        <p>{ countryInfo[0].name }</p>
-                        <img src={ countryInfo[0].flag }></img>
-                        <div>Mapa</div>
+                        <div className="row">
+                            <h2>country</h2>
+                            <p>{ countryInfo[0].name }</p>
+                        </div>
+                        <div className="row">
+                            <img src={ countryInfo[0].flag }></img>
+                        </div>
                     </div>
                     <div className="countryinfo__container__col2">
                         <div className="countryinfo__container__col2__col1">
-                            <h2>capital</h2>
+                            <div className="row">
+                                <h2>capital</h2>
                                 <p>{ countryInfo[0].capital }</p>
-                            <h2>subregion</h2>
+                            </div>
+                            <div className="row">
+                                <h2>subregion</h2>
                                 <p>{ countryInfo[0].subregion }</p>
-                            <h2>population</h2>
+                            </div>
+                            <div className="row">
+                                <h2>population</h2>
                                 <p>{ population }</p>
+                            </div>
                         </div>
                         <div className="countryinfo__container__col2__col2">
-                            <h2>area km^2</h2>
-                                <p>{ area }</p>
-                            <h2>'currencies, symbol'</h2>
-                                <p>{ countryInfo[0].currencies[0].name }
-                                   { countryInfo[0].currencies[0].symbol }
-                               </p>
-                            <h2>'languages.name'</h2>
-                                <p>{ countryInfo[0].languages[0].name }</p>
-
+                                <div className="row">
+                                    <h2>area km<sup>2</sup></h2>
+                                    <p>{ area }</p>
+                                </div>
+                                <div className="row">
+                                    <h2>currencies - symbol</h2>
+                                    <p>{ countryInfo[0].currencies[0].name } - { countryInfo[0].currencies[0].symbol } </p>
+                                </div>
+                                <div className="row">
+                                    <h2>language</h2>
+                                    <p>{ countryInfo[0].languages[0].name }</p>
+                                </div>
                         </div>
                     </div>
                 </div>

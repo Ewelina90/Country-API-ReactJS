@@ -49,7 +49,9 @@ export class SearchBar extends React.Component {
                            { end }
                        </li>;
             })
-            : <li>This country doesn't exist.</li>;
+            : <li className="searchbar__list__item">
+                This country doesn't exist.
+              </li>;
 
         this.setState({
             countryPropositions: countries,

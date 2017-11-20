@@ -41,6 +41,7 @@ body {
         color: rgba(255,255,255,0.8);
         font-size: 1.75rem;
         line-height: 2em;
+        font-style: italic;
     }
 }
 
@@ -89,28 +90,33 @@ body {
 .searchbar {
     width: 100%;
     background-color: #fafafa;
-    box-shadow: 1px 1px 4px 0px rgba(158, 158, 158, 0.5);
+    border-bottom: rgba(158, 158, 158, 0.5);
     margin: 0 auto;
     position: relative;
     .searchbar__input {
         margin: 20px auto;
         width: 350px;
-        height: 35px;
-        font-size: 1.2rem;
-        background-color: lighten(#f5f5f5,10%);
+        height: 2.2em;
+        font-size: 1rem;
+        background-color: #fafafa;
         padding: 0.2em 0.5em;
-        border: 1px solid darken(#f5f5f5, 10%);
+        border: none;
+        box-shadow: 0 0 3px 0 rgba(158, 158, 158, 0.5);
         color: #1a3795;
         &:focus {
             outline: none;
-            border: 1px solid #ffbc00;
+            border: 1px solid #2959ab;
         }
+        // &::after {
+        //     content: '&#x1F50D';
+        // }
     }
     .searchbar__list {
         width: $propositionListWidth;
-        margin: -16px auto;
+        margin: -20px auto;
         position: absolute;
-        left: 30%;
+        right: 0;
+        left: 0;
         background: #fafafa;
         z-index: 1;
         box-shadow: 0 0 4px 0 rgba(158, 158, 158, 0.5);
@@ -120,17 +126,22 @@ body {
             border-bottom: 1px solid #e6e6e6;
             font-weight: 400;
             letter-spacing: 1px;
+            &:hover {
+                cursor: pointer;
+                background-color: #2959ab;
+                color: rgba(255,255,255,0.9);
+            }
         }
     }
 }
 
 .countryinfo {
     width: 100%;
-    text-align: center;
     .countryinfo__container {
         width: 80%;
         margin: 30px auto;
-        border: 2px solid black;
+        background-color: #fafafa;
+        box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
         &::after {
             display: block;
             content: '';
@@ -140,10 +151,13 @@ body {
 }
 
 .countryinfo__container__col1 {
-    width: 30%;
+    width: 29%;
     float: left;
-    margin-left: 5%;
+    margin: 0 3%;
     padding: 5px;
+    .row {
+        @extend %mixinRow;
+    }
 }
 
 .countryinfo__container__col2 {
@@ -161,14 +175,21 @@ body {
         display: block;
     }
     .countryinfo__container__col2__col1 {
-        width: 45%;
+        width: 50%;
         float: left;
-        padding: 5px;
+        padding: 5px 5px 10px 5px;
+        border-left: 1px solid #eaeaea;
+        .row {
+            @extend %mixinRow;
+        }
     }
     .countryinfo__container__col2__col2 {
-        width: 45%;
+        width: 50%;
         float: left;
-        padding: 5px;
+        padding: 5px 5px 10px 5px;
+        .row {
+            @extend %mixinRow;
+        }
     }
 
 }
