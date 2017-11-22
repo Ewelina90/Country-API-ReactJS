@@ -13,6 +13,14 @@ body {
     color: black;
 }
 
+a {
+    background-image: linear-gradient(rgba(38, 198, 218, 0.6), rgba(38, 198, 218, 0.5));
+    background-repeat: no-repeat;
+    background-size: 0% 0%;
+    background-position: 50% 50%;
+    transition: background-size .3s, color .3s;
+}
+
 .active {
     background-color: green;
 }
@@ -24,24 +32,27 @@ body {
 .header {
     width: 100%;
     padding: 4%;
+    padding-bottom: 0.5%;
     font-weight: 400;
-    background-color: #2457b3;
-    background-image: url("./../img/mountains.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-color: #006064;
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
     .header__title {
         text-align: center;
         font-size: 3.5rem;
         color: rgba(255,255,255,0.9);
-        line-height: 2em;
+        line-height: 1.7em;
+        letter-spacing: 0.03em;
     }
     .header__subtitle {
         text-align: center;
-        color: rgba(255,255,255,0.8);
-        font-size: 1.75rem;
-        line-height: 2em;
-        font-style: italic;
+        color: rgba(255,255,255,0.7);
+        font-size: 1.55rem;
+        line-height: 1.5em;
+        font-weight: 300;
+        text-transform: lowercase;
+
     }
 }
 
@@ -55,7 +66,6 @@ body {
         height: 100%;
         margin: 0 auto;
         text-align: center;
-        border-bottom: 1px solid #5f8fce;
         .navigation__menu__item {
             display: inline-block;
             height: 100%;
@@ -77,7 +87,8 @@ body {
             }
         }
         .navigation__menu__item--active {
-            border-bottom: 2px solid rgba(255,255,255,0.9);
+            border-bottom: 2px solid #26c6da;
+            background-size: 100% 100%;
         }
     }
 }
@@ -89,12 +100,13 @@ body {
 
 .searchbar {
     width: 100%;
-    background-color: #fafafa;
+    background-color: #428d90;
     border-bottom: rgba(158, 158, 158, 0.5);
     margin: 0 auto;
     position: relative;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     .searchbar__input {
-        margin: 20px auto;
+        margin: 30px auto;
         width: 350px;
         height: 2.2em;
         font-size: 1rem;
@@ -102,10 +114,10 @@ body {
         padding: 0.2em 0.5em;
         border: none;
         box-shadow: 0 0 3px 0 rgba(158, 158, 158, 0.5);
-        color: #1a3795;
+        color: #276063;
         &:focus {
             outline: none;
-            border: 1px solid #2959ab;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14) inset,
         }
         // &::after {
         //     content: '&#x1F50D';
@@ -113,13 +125,13 @@ body {
     }
     .searchbar__list {
         width: $propositionListWidth;
-        margin: -20px auto;
+        margin: -30px auto;
         position: absolute;
         right: 0;
         left: 0;
         background: #fafafa;
         z-index: 1;
-        box-shadow: 0 0 4px 0 rgba(158, 158, 158, 0.5);
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
         .searchbar__list__item {
             font-size: 1rem;
             line-height: 2.2em;
@@ -128,7 +140,7 @@ body {
             letter-spacing: 1px;
             &:hover {
                 cursor: pointer;
-                background-color: #2959ab;
+                background-color: #409aa7;
                 color: rgba(255,255,255,0.9);
             }
         }
