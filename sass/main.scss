@@ -113,11 +113,10 @@ a {
         background-color: #fafafa;
         padding: 0.2em 0.5em;
         border: none;
-        box-shadow: 0 0 3px 0 rgba(158, 158, 158, 0.5);
         color: #276063;
         &:focus {
             outline: none;
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14) inset,
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2) inset;
         }
         // &::after {
         //     content: '&#x1F50D';
@@ -131,7 +130,7 @@ a {
         left: 0;
         background: #fafafa;
         z-index: 1;
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
         .searchbar__list__item {
             font-size: 1rem;
             line-height: 2.2em;
