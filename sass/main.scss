@@ -143,14 +143,17 @@ a {
                 color: rgba(255,255,255,0.9);
             }
         }
+        .searchbar__list__item:last-child {
+            border-bottom: none;
+        }
     }
 }
 
 .countryinfo {
     width: 100%;
     .countryinfo__container {
-        width: 80%;
-        margin: 30px auto;
+        width: 100%;
+        margin: 0px auto;
         background-color: #fafafa;
         box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
         &::after {
@@ -159,48 +162,89 @@ a {
             clear: both;
         }
     }
+    @media(min-width: 500px ) {
+        .countryinfo__container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 10px 0;
+        }
+    }
 }
 
 .countryinfo__container__col1 {
-    width: 29%;
+    width: 100%;
     float: left;
-    margin: 0 3%;
-    padding: 5px;
+    padding: 5px 5%;
+    padding-bottom: 0;
     .row {
         @extend %mixinRow;
+        width: 100%;
+    }
+}
+@media(min-width: 800px) {
+    .countryinfo__container__col1 {
+        width: 40%;
+        padding-bottom: 5%;
+        .row {
+            width: 95%;
+        }
     }
 }
 
 .countryinfo__container__col2 {
-    width: 65%;
+    width: 100%;
     float: left;
-    padding: 5px;
-    &:before {
-        content: '';
-        clear: both;
-        display: block;
-    }
-    &:after {
-        content: '';
-        clear: both;
-        display: block;
-    }
+    padding: 5%;
+    padding-top: 0;
     .countryinfo__container__col2__col1 {
         width: 50%;
         float: left;
-        padding: 5px 5px 10px 5px;
-        border-left: 1px solid #eaeaea;
+        padding: 5px 5% 10px 5%;
         .row {
             @extend %mixinRow;
+            width: 100%;
         }
     }
     .countryinfo__container__col2__col2 {
         width: 50%;
         float: left;
-        padding: 5px 5px 10px 5px;
+        padding: 5px 5% 10px 5%;
         .row {
             @extend %mixinRow;
+            width: 100%;
         }
     }
-
+}
+@media(min-width: 800px) {
+    .countryinfo__container__col2 {
+        width: 60%;
+        padding: 0;
+        &:before {
+            content: '';
+            clear: both;
+            display: block;
+        }
+        &:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .countryinfo__container__col2__col1 {
+            width: 50%;
+            float: left;
+            padding: 5px 5% 10px 5%;
+            border-left: 1px solid #eaeaea;
+            .row {
+                width: 95%;
+            }
+        }
+        .countryinfo__container__col2__col2 {
+            width: 50%;
+            float: left;
+            padding: 5px 5% 10px 5%;
+            .row {
+                width: 95%;
+            }
+        }
+    }
 }
