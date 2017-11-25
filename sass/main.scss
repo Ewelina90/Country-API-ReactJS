@@ -166,7 +166,7 @@ a {
         .countryinfo__container {
             width: 80%;
             margin: 30px auto;
-            padding: 10px 0;
+            padding: 10px 0 0 0;
         }
     }
 }
@@ -174,8 +174,7 @@ a {
 .countryinfo__container__col1 {
     width: 100%;
     float: left;
-    padding: 5px 5%;
-    padding-bottom: 0;
+    padding: 5px 5% 0 5%;
     .row {
         @extend %mixinRow;
         width: 100%;
@@ -184,7 +183,7 @@ a {
 @media(min-width: 800px) {
     .countryinfo__container__col1 {
         width: 40%;
-        padding-bottom: 5%;
+        padding: 5px 5% 5% 5%;
         .row {
             width: 95%;
         }
@@ -217,8 +216,9 @@ a {
 }
 @media(min-width: 800px) {
     .countryinfo__container__col2 {
-        width: 60%;
-        padding: 0;
+        width: 59%;
+        padding: 5px 0 5% 0;
+        border-left: 1px solid #eaeaea;
         &:before {
             content: '';
             clear: both;
@@ -233,7 +233,6 @@ a {
             width: 50%;
             float: left;
             padding: 5px 5% 10px 5%;
-            border-left: 1px solid #eaeaea;
             .row {
                 width: 95%;
             }

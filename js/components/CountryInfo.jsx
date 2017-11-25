@@ -29,8 +29,8 @@ export class CountryInfo extends React.Component {
         }
 
         return (
-            <section className="countryinfo">
-                <div className="countryinfo__container">
+
+                <div>
                     <div className="countryinfo__container__col1">
                         <div className="row">
                             <h2>country</h2>
@@ -71,7 +71,6 @@ export class CountryInfo extends React.Component {
                         </div>
                     </div>
                 </div>
-            </section>
         )
     }
 }
