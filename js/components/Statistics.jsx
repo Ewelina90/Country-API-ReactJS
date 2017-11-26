@@ -22,6 +22,7 @@ export class Statistics extends React.Component {
                                 population: e.population,
                                 area: e.area,
                                 subregion: e.subregion,
+                                region: e.region,
                             }
                         ]
                     }
@@ -41,12 +42,23 @@ export class Statistics extends React.Component {
                 groups.push(currentData);
             }
         }
+
         let numbers = [];
         for(let i = 0; i < groups.length; i++){
             numbers[i] = data.filter((e) => {
-                return groups[i] === e.country[0][group];
+                // treat Russian Federation as part of Asia
+                if(e.country[0]['name'] === "Russian Federation"){
+                    console.log(true);
+                    return groups[i] === "Central Asia";
+                }else{
+                    return groups[i] === e.country[0][group];
+                }
             }).map((e) => {
-                return e.country[0][number];
+                if(e.country[0][number] == undefined){
+                    return 0;
+                }else {
+                    return e.country[0][number];
+                }
             }).reduce((prev, curr) => {
                 return prev + curr;
             })
@@ -60,9 +72,20 @@ export class Statistics extends React.Component {
 
     render() {
         const populationData = this.state.countriesData ?  this.getChartData('subregion', 'population') : null;
+        const areaData = this.state.countriesData ? this.getChartData('subregion', 'area') : null;
+        console.log(this.state.countriesData);
         return (
             <div className="content">
-                <SimplePieChart data={populationData}></SimplePieChart>
+                <div className="row">
+                    <div className="chart">
+                        <h2 className="chart__title">Number of population in each subregion</h2>
+                        <SimplePieChart key={1} data={populationData}></SimplePieChart>
+                    </div>
+                    <div className="chart">
+                        <h2 className="chart__title">Area of each subregion</h2>
+                        <SimplePieChart key={2} data={areaData}></SimplePieChart>
+                    </div>
+                </div>
             </div>
 
         )

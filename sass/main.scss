@@ -93,11 +93,6 @@ a {
     }
 }
 
-.content {
-    width: 100%;
-    text-align: center;
-}
-
 .searchbar {
     width: 100%;
     background-color: #428d90;
@@ -153,7 +148,7 @@ a {
     width: 100%;
     .countryinfo__container {
         width: 100%;
-        margin: 0px auto;
+        margin: 0 auto;
         background-color: #fafafa;
         box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
         &::after {
@@ -243,6 +238,34 @@ a {
             padding: 5px 5% 10px 5%;
             .row {
                 width: 95%;
+            }
+        }
+    }
+}
+
+// Statistic component
+
+.content {
+    width: 100%;
+    text-align: center;
+    .row {
+        @extend %mixinRow;
+        width: 100%;
+        .chart {
+            width: 800px;
+            height: 590px;
+            margin: 30px auto;
+            background-color: #fafafa;
+            box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+            .chart__title {
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: #696969;
+                padding: 10px;
+                padding-top: 30px;
+                display: inline-block;
+                border-bottom: 1px solid #428d90;
             }
         }
     }

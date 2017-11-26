@@ -25,7 +25,7 @@ const renderActiveShape = (props) => {
         outerRadius={outerRadius}
         startAngle={startAngle}
         endAngle={endAngle}
-        fill={fill}
+        fill='#54c7da'
       />
       <Sector
         cx={cx}
@@ -34,11 +34,11 @@ const renderActiveShape = (props) => {
         endAngle={endAngle}
         innerRadius={outerRadius + 6}
         outerRadius={outerRadius + 10}
-        fill={fill}
+        fill='#54c7da'
       />
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none"/>
+  <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke='#54c7da' fill="none"/>
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none"/>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`${value}`}</text>
       <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
         {`(Rate ${(percent * 100).toFixed(2)}%)`}
       </text>
@@ -62,16 +62,17 @@ export class SimplePieChart extends React.Component {
 
 	render () {
       	return (
-            	<PieChart width={800} height={400}>
+            	<PieChart width={800} height={500}>
                 <Pie
                     activeIndex={this.state.activeIndex}
                     activeShape={renderActiveShape}
                     data={this.props.data}
-                    cx={300}
-                    cy={200}
+                    dataKey="value"
+                    cx='50%'
+                    cy='50%'
                     innerRadius={120}
                     outerRadius={170}
-                    fill="#8884d8"
+                    fill="#3f98a5"
                     onMouseEnter={this.onPieEnter}
                 />
                </PieChart>
