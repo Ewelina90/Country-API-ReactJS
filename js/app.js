@@ -34876,6 +34876,14 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
             });
         };
 
+        _this.handleOnKeyPress = function (event) {
+            var key = event.keyCode;
+            if (_this.state.propositionsList.length && (key === 38 || key === 40)) {
+                event.preventDefault();
+                console.log(event.target);
+            }
+        };
+
         _this.state = {
             searchWord: '',
             countryPropositions: '',
@@ -34885,6 +34893,16 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
     }
 
     _createClass(SearchBar, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            document.addEventListener('keydown', this.handleOnKeyPress);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            document.removeEventListener('keydown', this.handleOnKeyPress);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _state = this.state,

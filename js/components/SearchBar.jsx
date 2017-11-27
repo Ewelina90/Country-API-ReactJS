@@ -72,6 +72,22 @@ export class SearchBar extends React.Component {
         });
     }
 
+    handleOnKeyPress = event => {
+        const key = event.keyCode;
+        if (this.state.propositionsList.length && (key === 38 || key === 40)) {
+            event.preventDefault();
+            console.log(event.target);
+        }
+    }
+
+    componentWillMount () {
+        document.addEventListener('keydown', this.handleOnKeyPress);
+    }
+
+    componentWillUnmount () {
+        document.removeEventListener('keydown', this.handleOnKeyPress);
+    }
+
     render() {
         const { searchWord, propositionsList } = this.state;
         return (
