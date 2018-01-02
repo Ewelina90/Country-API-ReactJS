@@ -9,7 +9,7 @@ export class Countries extends React.Component {
         super(...arguments);
         this.state = {
             countriesData: '',
-            chosenCountry: '',
+            chosenCountry: 'Poland',
             countryDataToDisplay: '',
         };
     }
@@ -37,6 +37,9 @@ export class Countries extends React.Component {
                 });
                 this.setState({
                     countriesData: countriesData,
+                }, () => {
+                    const country = this.state.chosenCountry;
+                    this.getCountryData(country);
                 });
             })
         }

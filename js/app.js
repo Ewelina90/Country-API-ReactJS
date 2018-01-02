@@ -33927,7 +33927,7 @@ var Countries = exports.Countries = function (_React$Component) {
 
         _this.state = {
             countriesData: '',
-            chosenCountry: '',
+            chosenCountry: 'Poland',
             countryDataToDisplay: ''
         };
         return _this;
@@ -33958,6 +33958,9 @@ var Countries = exports.Countries = function (_React$Component) {
                 });
                 _this2.setState({
                     countriesData: countriesData
+                }, function () {
+                    var country = _this2.state.chosenCountry;
+                    _this2.getCountryData(country);
                 });
             });
         }
