@@ -8,6 +8,7 @@ export class SearchBar extends React.Component {
             searchWord: '',
             countryPropositions: '',
             propositionsList: '',
+            index: 0,
         };
     }
 
@@ -74,18 +75,44 @@ export class SearchBar extends React.Component {
 
     handleOnKeyPress = event => {
         const key = event.keyCode;
-        if (this.state.propositionsList.length && (key === 38 || key === 40)) {
-            event.preventDefault();
-            console.log(event.target);
+        let indexLocal = this.state.index;
+        if (this.state.propositionsList.length){
+            const propoList = this.refs.propList.children;
+            switch (key) {
+                case 40:
+                    if((indexLocal < propoList.length) && (indexLocal > 0)){
+                        propoList[indexLocal - 1].classList.remove('activeKey');
+                        propoList[indexLocal].classList.add('activeKey');
+                        indexLocal = indexLocal + 1;
+                    }
+                    else if((indexLocal < propoList.length) && (indexLocal === 0)) {
+                        propoList[indexLocal].classList.add('activeKey');
+                        indexLocal = indexLocal + 1;
+                    }
+                    break;
+                case 38:
+                    if(indexLocal > 0){
+                        propoList[indexLocal -1].classList.remove('activeKey');
+                        if(indexLocal > 1){
+                            indexLocal = indexLocal - 1;
+                        }
+                        propoList[indexLocal -1].classList.add('activeKey');
+                    }
+                    break;
+                case 13:
+                    propoList[indexLocal -1].classList.remove('activeKey');
+                    this.handleOnChose(event,propoList[indexLocal -1].textContent);
+                    indexLocal = 0;
+                    break;
+                default:
+                    indexLocal = 0;
+
+            }
         }
-    }
+        this.setState({
+            index: indexLocal,
+        });
 
-    componentWillMount () {
-        document.addEventListener('keydown', this.handleOnKeyPress);
-    }
-
-    componentWillUnmount () {
-        document.removeEventListener('keydown', this.handleOnKeyPress);
     }
 
     render() {
@@ -97,10 +124,13 @@ export class SearchBar extends React.Component {
                     className="searchbar__input"
                     value={ searchWord }
                     onChange={ this.handlSearchOnChange }
+                    onKeyDown={ this.handleOnKeyPress }
+                    tabIndex='0'
                     placeholder='Type Country name in english'>
                 </input>
                 <ul style={{display: searchWord.length >= 3 ? 'block' : 'none'}}
-                    className="searchbar__list">
+                    className="searchbar__list"
+                    ref='propList'>
                     { propositionsList }
                 </ul>
             </section>

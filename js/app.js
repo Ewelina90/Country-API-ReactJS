@@ -34881,31 +34881,54 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
 
         _this.handleOnKeyPress = function (event) {
             var key = event.keyCode;
-            if (_this.state.propositionsList.length && (key === 38 || key === 40)) {
-                event.preventDefault();
-                console.log(event.target);
+            var indexLocal = _this.state.index;
+            if (_this.state.propositionsList.length) {
+                var propoList = _this.refs.propList.children;
+                switch (key) {
+                    case 40:
+                        if (indexLocal < propoList.length && indexLocal > 0) {
+                            propoList[indexLocal - 1].classList.remove('activeKey');
+                            propoList[indexLocal].classList.add('activeKey');
+                            indexLocal = indexLocal + 1;
+                        } else if (indexLocal < propoList.length && indexLocal === 0) {
+                            propoList[indexLocal].classList.add('activeKey');
+                            indexLocal = indexLocal + 1;
+                        }
+                        break;
+                    case 38:
+                        if (indexLocal > 0) {
+                            propoList[indexLocal - 1].classList.remove('activeKey');
+                            if (indexLocal > 1) {
+                                indexLocal = indexLocal - 1;
+                            }
+                            propoList[indexLocal - 1].classList.add('activeKey');
+                        }
+                        break;
+                    case 13:
+                        propoList[indexLocal - 1].classList.remove('activeKey');
+                        _this.handleOnChose(event, propoList[indexLocal - 1].textContent);
+                        indexLocal = 0;
+                        break;
+                    default:
+                        indexLocal = 0;
+
+                }
             }
+            _this.setState({
+                index: indexLocal
+            });
         };
 
         _this.state = {
             searchWord: '',
             countryPropositions: '',
-            propositionsList: ''
+            propositionsList: '',
+            index: 0
         };
         return _this;
     }
 
     _createClass(SearchBar, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            document.addEventListener('keydown', this.handleOnKeyPress);
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            document.removeEventListener('keydown', this.handleOnKeyPress);
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _state = this.state,
@@ -34920,11 +34943,14 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
                     className: 'searchbar__input',
                     value: searchWord,
                     onChange: this.handlSearchOnChange,
+                    onKeyDown: this.handleOnKeyPress,
+                    tabIndex: '0',
                     placeholder: 'Type Country name in english' }),
                 _react2.default.createElement(
                     'ul',
                     { style: { display: searchWord.length >= 3 ? 'block' : 'none' },
-                        className: 'searchbar__list' },
+                        className: 'searchbar__list',
+                        ref: 'propList' },
                     propositionsList
                 )
             );
