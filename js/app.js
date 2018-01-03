@@ -34929,6 +34929,28 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
     }
 
     _createClass(SearchBar, [{
+        key: 'handleClickOutside',
+        value: function handleClickOutside(event) {
+            var domNode = this.refs.propList;
+
+            if (!domNode || !domNode.contains(event.target)) {
+                this.setState({
+                    countryPropositions: '',
+                    searchWord: ''
+                });
+            }
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            document.addEventListener('click', this.handleClickOutside.bind(this), true);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            document.removeEventListener('click', this.handleClickOutside.bind(this), true);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _state = this.state,

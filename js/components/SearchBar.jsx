@@ -115,6 +115,25 @@ export class SearchBar extends React.Component {
 
     }
 
+    handleClickOutside(event){
+        const domNode = this.refs.propList;
+
+        if (!domNode || !domNode.contains(event.target)) {
+            this.setState({
+                countryPropositions: '',
+                searchWord : '',
+            });
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutside.bind(this), true);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside.bind(this), true);
+    }
+
     render() {
         const { searchWord, propositionsList } = this.state;
         return (
