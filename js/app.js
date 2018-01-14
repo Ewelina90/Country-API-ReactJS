@@ -34941,9 +34941,23 @@ var SearchBar = exports.SearchBar = function (_React$Component) {
             }
         }
     }, {
+        key: 'handleOnMouseEnter',
+        value: function handleOnMouseEnter(event) {
+            var domNode = this.refs.propList.children;
+            for (var i = 0; i < domNode.length; i++) {
+                if (domNode[i].classList.contains('activeKey')) {
+                    domNode[i].classList.remove('activeKey');
+                }
+            }
+            this.setState({
+                index: 0
+            });
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             document.addEventListener('click', this.handleClickOutside.bind(this), true);
+            this.refs.propList.addEventListener('mouseover', this.handleOnMouseEnter.bind(this), true);
         }
     }, {
         key: 'componentWillUnmount',

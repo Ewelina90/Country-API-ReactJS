@@ -126,8 +126,21 @@ export class SearchBar extends React.Component {
         }
     }
 
+    handleOnMouseEnter(event){
+        const domNode = this.refs.propList.children;
+        for(let i = 0; i < domNode.length; i++){
+            if(domNode[i].classList.contains('activeKey')){
+                domNode[i].classList.remove('activeKey');
+            }
+        }
+        this.setState({
+            index: 0,
+        });
+    }
+
     componentDidMount() {
         document.addEventListener('click', this.handleClickOutside.bind(this), true);
+        this.refs.propList.addEventListener('mouseover', this.handleOnMouseEnter.bind(this), true);
     }
 
     componentWillUnmount() {
