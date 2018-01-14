@@ -48,7 +48,7 @@ export class Statistics extends React.Component {
             numbers[i] = data.filter((e) => {
                 // treat Russian Federation as part of Asia
                 if(e.country[0]['name'] === "Russian Federation"){
-                    console.log(true);
+
                     return groups[i] === "Central Asia";
                 }else{
                     return groups[i] === e.country[0][group];

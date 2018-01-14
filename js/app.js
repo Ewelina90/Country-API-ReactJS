@@ -34207,7 +34207,7 @@ var Statistics = exports.Statistics = function (_React$Component) {
                 numbers[_i] = data.filter(function (e) {
                     // treat Russian Federation as part of Asia
                     if (e.country[0]['name'] === "Russian Federation") {
-                        console.log(true);
+
                         return groups[_i] === "Central Asia";
                     } else {
                         return groups[_i] === e.country[0][group];
@@ -34720,7 +34720,7 @@ var renderActiveShape = function renderActiveShape(props) {
     _react2.default.createElement(
       'text',
       { x: ex + (cos >= 0 ? 1 : -1) * 12, y: ey, textAnchor: textAnchor, fill: '#333' },
-      '' + value
+      (value / 1000000).toFixed(1) + ' mln'
     ),
     _react2.default.createElement(
       'text',
